@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { StyledButtonItem, StyledButton } from './Feedback.styled';
 
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
@@ -22,6 +23,7 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   );
 };
 
-//   <StyledButton>Good</StyledButton>
-//           <StyledButton>Neutral</StyledButton>
-//           <StyledButton>Bad</StyledButton>
+FeedbackOptions.propTypes = {
+  options: PropTypes.array,
+  onLeaveFeedback: PropTypes.func,
+};

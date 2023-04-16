@@ -19,6 +19,7 @@ export const StyledButtonList = styled.ul`
   flex-direction: row;
   gap: 30px;
   list-style-type: none;
+  padding: 0;
 `;
 export const StyledButtonItem = styled.li`
   font-size: 18px;
