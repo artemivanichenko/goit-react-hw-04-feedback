@@ -6,7 +6,7 @@ export const StyledItem = styled.div`
   width: 480px;
   height: 480px;
   border-radius: 4px;
-  box-shadow: 0 2px 12px rgb(148, 115, 156);
+  box-shadow: 0 2px 12px rgb(150, 115, 156);
   margin: 10px auto;
   overflow: hidden;
   align-items: center;
