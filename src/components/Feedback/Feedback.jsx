@@ -2,7 +2,7 @@ import { Section } from 'components/Section/Section';
 import { Statistics } from 'components/Statistics/Statistics';
 import { Component } from 'react';
 import { StyledItem, StyledButtonList } from './Feedback.styled';
-import { FeedbackOptions } from './FeedbackOptions';
+import { FeedbackOptions } from '../FeedbackOptions/FeedbackOptions';
 
 export class Feedback extends Component {
   state = {
