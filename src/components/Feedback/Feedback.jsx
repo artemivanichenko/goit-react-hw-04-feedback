@@ -1,45 +1,53 @@
-import { Section } from 'components/Section/Section';
-import { Statistics } from 'components/Statistics/Statistics';
-import { Component } from 'react';
+import { useState } from 'react';
 import { StyledItem, StyledButtonList } from './Feedback.styled';
-import { FeedbackOptions } from '../FeedbackOptions/FeedbackOptions';
+import { Section, Statistics, FeedbackOptions } from '../index';
 
-export class Feedback extends Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
-  onLeaveFeedback = name => {
-    this.setState(prevState => {
-      return { [name]: prevState[name] + 1 };
-    });
-  };
-  onTotal = () => {
-    return this.state.good + this.state.neutral + this.state.bad;
-  };
-  onPercentage = () => {
-    return ((this.state.good / this.onTotal()) * 100).toFixed(0);
+export const Feedback = () => {
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+
+  const onLeaveFeedback = e => {
+    switch (e) {
+      case 'good':
+        setGood(e => e + 1);
+        break;
+      case 'neutral':
+        setNeutral(e => e + 1);
+        break;
+      case 'bad':
+        setBad(e => e + 1);
+        break;
+      default:
+        return;
+    }
   };
 
-  render() {
-    return (
-      <StyledItem>
-        <Section title="Please leave feedback">
-          <StyledButtonList>
-            <FeedbackOptions
-              options={Object.keys(this.state)}
-              onLeaveFeedback={this.onLeaveFeedback}
-            />
-          </StyledButtonList>
+  const onTotal = () => {
+    return good + neutral + bad;
+  };
+  const onPercentage = () => {
+    return ((good / onTotal()) * 100).toFixed(0);
+  };
 
-          <Statistics
-            {...this.state}
-            total={this.onTotal}
-            percentage={this.onPercentage}
+  return (
+    <StyledItem>
+      <Section title="Please leave feedback">
+        <StyledButtonList>
+          <FeedbackOptions
+            options={['good', 'neutral', 'bad']}
+            onLeaveFeedback={onLeaveFeedback}
           />
-        </Section>
-      </StyledItem>
-    );
-  }
-}
+        </StyledButtonList>
+
+        <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          total={onTotal}
+          percentage={onPercentage}
+        />
+      </Section>
+    </StyledItem>
+  );
+};
